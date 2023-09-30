@@ -18,7 +18,9 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "eth.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -29,7 +31,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+void SystemClock_PreConfig(void);
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -74,7 +76,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+    SystemClock_PreConfig();
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -86,8 +88,12 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_ETH_Init();
+    MX_DMA_Init();
   MX_USART1_UART_Init();
+
+  MX_ETH_Init();
+  MX_TIM2_Init();
+  MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -150,7 +156,16 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void SystemClock_PreConfig(void){
+    RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
+    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_SYSCLK;
+    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+    {
+        Error_Handler();
+    }
+}
 /* USER CODE END 4 */
 
 /**
