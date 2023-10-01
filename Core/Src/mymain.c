@@ -14,8 +14,8 @@ void mymain(){
 
     // 超级循环
     for(;;){
-        HAL_ETH_ReadPHYRegister(&heth,DM9162_PHY_ADDRESS,PHY_BSR,&reg_temp);
-        printf("%ld\r\n",reg_temp);
+//        HAL_ETH_ReadPHYRegister(&heth,DM9162_PHY_ADDRESS,PHY_BSR,&reg_temp);
+//        printf("%ld\r\n",reg_temp);
 //        tim2_count = TIM2->CNT;
 //        tim5_count = TIM5->CNT;
 //        temp[0] = (float)tim2_count;
@@ -24,7 +24,7 @@ void mymain(){
 //        HAL_UART_Transmit_DMA(&huart1,(uint8_t *)vofa_JF,sizeof(vofa_JF));
 //        LED_On(State_LED);
 //        printf("%ld,%ld\r\n",tim2_count,tim5_count);
-        HAL_Delay(100);
+//        HAL_Delay(100);
 //        LED_Off(State_LED);
 //        HAL_Delay(500);
     }
@@ -41,4 +41,5 @@ void Init(){
 
     //网卡初始化
     DM9162_Init();
+    DM9162_Link_Detect();
 }
