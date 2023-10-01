@@ -126,6 +126,7 @@ void HAL_ETH_MspInit(ETH_HandleTypeDef* ethHandle)
 
   /* USER CODE BEGIN ETH_MspInit 1 */
 
+
   /* USER CODE END ETH_MspInit 1 */
   }
 }

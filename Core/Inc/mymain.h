@@ -7,6 +7,8 @@
 #include "retarget.h"
 #include "tim.h"
 #include "string.h"
+#include "eth.h"
+#include "DM9162.h"
 
 
 void mymain();
